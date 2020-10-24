@@ -1,0 +1,43 @@
+config:
+  payload:
+    -
+      path: "artillerySampleData.csv"
+      fields:
+        - "product_id"
+        - "imagename"
+        - "color"
+        - "url"
+        - "alt"
+      delimiter: '|'
+    -
+      path: "random_products.csv"
+      fields: "product"
+  target: "http://localhost:3001"
+  phases:
+    - duration: 60
+      arrivalRate: 1
+      name: "1 user/sec"
+    - duration: 60
+      arrivalRate: 10
+      name: "10 user/sec"
+    - duration: 60
+      arrivalRate: 100
+      name: "100 user/sec"
+    - duration: 60
+      arrivalRate: 1000
+      name: "1000 user/sec"
+scenarios:
+  - flow:
+      - get:
+          url: "/{{ product }}"
+          weight: 99
+      - post:
+          url: "/image"
+          weight: 1
+          json:
+            image:
+              product_id: "{{ product_id }}"
+              imagename: "{{ imagename }}"
+              color: "{{ color }}"
+              url: "{{ url }}"
+              alt: "{{ alt }}"
