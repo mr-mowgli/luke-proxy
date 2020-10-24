@@ -14,20 +14,21 @@ config:
       fields: "product"
   target: "http://localhost:3000"
   phases:
-    - duration: 60
-      arrivalRate: 1
-      name: "1 user/sec"
+    # - duration: 60
+    #   arrivalRate: 1
+    #   name: "1 user/sec"
     - duration: 60
       arrivalRate: 10
       name: "10 user/sec"
-    - duration: 60
-      arrivalRate: 100
-      name: "100 user/sec"
-    - duration: 60
-      arrivalRate: 1000
-      name: "1000 user/sec"
+    # - duration: 60
+    #   arrivalRate: 100
+    #   name: "100 user/sec"
+    # - duration: 60
+    #   arrivalRate: 1000
+    #   name: "1000 user/sec"
 scenarios:
   - flow:
+    - loop:
       - get:
           url: "/{{ product }}"
           weight: 99
@@ -41,3 +42,4 @@ scenarios:
               color: "{{ color }}"
               url: "{{ url }}"
               alt: "{{ alt }}"
+      count: 300
