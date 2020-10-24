@@ -18,11 +18,14 @@
   },
   "homepage": "https://github.com/hrr48-fec02-brucequalis/turner_proxy#readme",
   "dependencies": {
+    "axios": "^0.21.0",
     "express": "^4.17.1",
     "express-http-proxy": "^1.6.2",
     "http-proxy-middleware": "^1.0.5",
     "morgan": "^1.10.0",
+    "newrelic": "^6.13.2",
     "nodemon": "^2.0.4",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "request": "^2.88.2"
   }
 }
